@@ -1,7 +1,6 @@
 "use client";
 
 import { UploadButton, UploadDropzone, Uploader } from "@/lib/uploadthing";
-import "@uploadthing/react/styles.css";
 
 import { X } from "lucide-react";
 import Image from "next/image";
