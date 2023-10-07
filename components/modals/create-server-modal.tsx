@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -56,7 +57,8 @@ export const CreateServerModal = () => {
             await axios.post("/api/servers", values);
             form.reset();
             router.refresh();
-            onClose()
+            toast.success("Server registration Successful 😃");
+            onClose();
         } catch (error) {
             console.log(error);
         }
@@ -64,13 +66,14 @@ export const CreateServerModal = () => {
 
     const handleClose = () => {
         form.reset();
+        toast.error("Server registration canceled!");
         onClose();
     };
     return (
         <Dialog open={isModalOpen} onOpenChange={handleClose}>
-            <DialogContent className="bg-white text-black p-0 overflow-hidden">
-                <DialogHeader className="pt-8 px-6">
-                    <DialogTitle className="text-2xl text-center font-bold">
+            <DialogContent className="p-0 overflow-hidden text-black bg-white">
+                <DialogHeader className="px-6 pt-8">
+                    <DialogTitle className="text-2xl font-bold text-center">
                         Create your server!
                     </DialogTitle>
                     <DialogDescription className="text-center text-zinc-500 ">
@@ -83,7 +86,7 @@ export const CreateServerModal = () => {
                         onSubmit={form.handleSubmit(onSubmit)}
                         className="space-y-8"
                     >
-                        <div className="space-y-8 px-6">
+                        <div className="px-6 space-y-8">
                             <div className="flex items-center justify-center text-center">
                                 <FormField
                                     control={form.control}
@@ -110,13 +113,13 @@ export const CreateServerModal = () => {
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
+                                        <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-secondary/70">
                                             Server Name
                                         </FormLabel>
                                         <FormControl>
                                             <Input
                                                 disabled={isLoading}
-                                                className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                                                className="text-black border-0 bg-zinc-300/50 focus-visible:ring-0 focus-visible:ring-offset-0"
                                                 placeholder="Enter server name"
                                                 {...field}
                                             />
@@ -126,7 +129,7 @@ export const CreateServerModal = () => {
                                 )}
                             />
                         </div>
-                        <DialogFooter className="bg-gray-100 px-6 py-4">
+                        <DialogFooter className="px-6 py-4 bg-gray-100">
                             <Button variant={"primary"} disabled={isLoading}>
                                 Create
                             </Button>
