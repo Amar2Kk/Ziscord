@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { toast } from "sonner";
-import qs from "query-string"
+import qs from "query-string";
 
 import {
     Dialog,
@@ -38,6 +38,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams, useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { ChannelType } from "@prisma/client";
+import { useEffect } from "react";
 
 const formSchema = z.object({
     name: z
@@ -52,29 +53,38 @@ const formSchema = z.object({
 });
 
 export const CreateChannelModal = () => {
-    const { isOpen, onClose, type } = useModal();
-    const isModalOpen = isOpen && type === "createChannel";
+    const { isOpen, onClose, type, data } = useModal();
     const router = useRouter();
-    const params = useParams()
+    const params = useParams();
+
+    const isModalOpen = isOpen && type === "createChannel";
+    const { channelType } = data;
 
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
-            type: ChannelType.TEXT,
+            type: channelType || ChannelType.TEXT,
         },
     });
 
+    useEffect(() => {
+        if (channelType) {
+            form.setValue("type", channelType);
+        } else {
+            form.setValue("type", ChannelType.TEXT);
+        }
+    }, [channelType, form]);
     const isLoading = form.formState.isSubmitting;
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const url = qs.stringifyUrl({
-                url:"/api/channels",
-                query:{
-                    serverId: params?.serverId
-                }
-            })
+                url: "/api/channels",
+                query: {
+                    serverId: params?.serverId,
+                },
+            });
             await axios.post(url, values);
             form.reset();
             router.refresh();
@@ -154,7 +164,7 @@ export const CreateChannelModal = () => {
                                                 )}
                                             </SelectContent>
                                         </Select>
-                                        <FormMessage/>
+                                        <FormMessage />
                                     </FormItem>
                                 )}
                             />
