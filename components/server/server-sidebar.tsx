@@ -185,6 +185,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
                         </div>
                     </div>
                 )}
+                <Separator className="my-2 rounded-md bg-zinc-200 dark:bg-zinc-700" />
                 {!!members?.length && (
                     <div className="mb-2">
                         <ServerSection
@@ -195,7 +196,11 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
                         />
                         <div className="space-y-[2px]">
                             {members.map((member) => (
-                                <ServerMember key={member.id} member={member} server={server} />
+                                <ServerMember
+                                    key={member.id}
+                                    member={member}
+                                    server={server}
+                                />
                             ))}
                         </div>
                     </div>
