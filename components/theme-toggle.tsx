@@ -9,7 +9,7 @@ export function ThemeToggle() {
 
     return (
         <button
-            className="relative inline-flex scale-75 hover:scale-100 duration-300 ease-in-out"
+            className="relative inline-flex duration-300 ease-in-out scale-75 hover:scale-100"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         >
             <Sun

@@ -7,7 +7,7 @@ import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { NavigationAction } from "./navigation-action";
 import { NavigationItem } from "./navigation-item";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { UserButton } from "@clerk/nextjs";
 
 export const NavigationSidebar = async () => {
