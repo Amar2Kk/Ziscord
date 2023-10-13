@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
-import FileUpload from "@/components/file-upload";
+import {FileUpload} from "@/components/file-upload";
 
 import {
     Dialog,
