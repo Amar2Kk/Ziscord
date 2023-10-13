@@ -18,7 +18,7 @@ import {
 import { Form, FormField, FormControl, FormItem } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
-import { FileUpload } from "@/components/FileUpload";
+import { FileUpload } from "@/components/file-upload";
 import { useModal } from "@/hooks/use-modal-store";
 
 const formSchema = z.object({
