@@ -24,7 +24,7 @@ import { Button } from "@/components/ui/button";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FileUpload from "@/components/FileUpload";
+import { FileUpload } from "@/components/FileUpload";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
