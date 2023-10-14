@@ -6,7 +6,7 @@ import qs from "query-string";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Member, MemberRole, Profile } from "@prisma/client";
-import { Crown, Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from "lucide-react";
+import { Crown, Edit, FileIcon, ShieldCheck, Trash } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
@@ -65,7 +65,6 @@ export const ChatItem = ({
         if (member.id === currentMember.id) {
             return;
         }
-
         router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
     };
 
@@ -75,9 +74,7 @@ export const ChatItem = ({
                 setIsEditing(false);
             }
         };
-
         window.addEventListener("keydown", handleKeyDown);
-
         return () => window.removeEventListener("keyDown", handleKeyDown);
     }, []);
 
