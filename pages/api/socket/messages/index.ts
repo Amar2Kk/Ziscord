@@ -1,7 +1,6 @@
 import { currentProfilePages } from "@/lib/current-profile-pages";
 import { db } from "@/lib/db";
 import { NextApiRequest, NextApiResponse } from "next";
-import { TypeOf, any } from "zod";
 
 export default async function Handler(
     req: NextApiRequest,
