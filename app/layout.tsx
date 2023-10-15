@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 import { Toaster } from "sonner";
 
 import { cn } from "@/lib/utils";
@@ -23,7 +24,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <ClerkProvider>
+        <ClerkProvider
+            appearance={{
+                baseTheme: dark,
+            }}
+        >
             <html lang="en" suppressHydrationWarning>
                 <head>
                     <link rel="shortcut icon" href="/images/favicon.ico" />
